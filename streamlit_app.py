@@ -219,31 +219,28 @@ elif model == "Team Members":
     with col1:
         st.markdown("""
         <div class="team-member">
-            <span class="team-member-role">Advisor:</span><br>
-            <span class="team-member-name">Dr. YangYang Tao</span><br>
-            <span class="team-member-email">taoy1@nku.edu</span>
+            <span class="team-member-role">Member 1:</span><br>
+            <span class="team-member-name">Gaurab Baral</span><br>
         </div>
         """, unsafe_allow_html=True)
         st.markdown("""
         <div class="team-member">
-            <span class="team-member-role">E-board Member:</span><br>
-            <span class="team-member-name">Mithilesh Sah</span><br>
-            <span class="team-member-email">sahm1@nku.edu</span>
+            <span class="team-member-role">Member 1:</span><br>
+            <span class="team-member-name">Nabin Lama</span><br>
         </div>
         """, unsafe_allow_html=True)
 
     with col2:
         st.markdown("""
         <div class="team-member">
-            <span class="team-member-role">President:</span><br>
-            <span class="team-member-name">Gaurab Baral</span><br>
-            <span class="team-member-email">baralg1@nku.edu</span>
+            <span class="team-member-role">Member 1</span><br>
+            <span class="team-member-name">Abhishek Shrestha</span><br>
+
         </div>
         """, unsafe_allow_html=True)
         st.markdown("""
         <div class="team-member">
-            <span class="team-member-role">E-board Member:</span><br>
+            <span class="team-member-role">Member 1:</span><br>
             <span class="team-member-name">Sushant Man Shrestha</span><br>
-            <span class="team-member-email">shresthas11@nku.edu</span>
         </div>
         """, unsafe_allow_html=True)
