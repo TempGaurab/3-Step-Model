@@ -62,7 +62,6 @@ def about_the_club():
     This project is going to use 3-part models. Let’s imagine a car. Whenever the car is turned on and a person is seen in the driver’s seat, the model will detect a person, and it will start the second model only if it detects a person. If the car is turned off, this model will be off as well.
 After the first model detects a person, the second model will detect the eye of the person and send the image of the eye of the person to the third model which we built by ourselves. The third model will check for drowsiness based on eye features. If the person is found sleeping, different car mechanisms can be used to wake up the driver like braking in short intervals, honking etc. We will only be implementing the model part and not the IOT side of things.
 
-    </div>
     """, unsafe_allow_html=True)
     
     st.subheader("Our Team")
@@ -72,32 +71,24 @@ After the first model detects a person, the second model will detect the eye of 
     with col1:
         st.markdown("""
         <div class="team-member">
-            <span class="team-member-role">Advisor:</span><br>
-            <span class="team-member-name">Dr. YangYang Tao</span><br>
-            <span class="team-member-email">taoy1@nku.edu</span>
+            <span class="team-member-role">Gaurab Baral</span><br>
         </div>
         """, unsafe_allow_html=True)
         st.markdown("""
         <div class="team-member">
-            <span class="team-member-role">E-board Member:</span><br>
-            <span class="team-member-name">Mithilesh Sah</span><br>
-            <span class="team-member-email">sahm1@nku.edu</span>
+            <span class="team-member-role">Sushant Shrestha</span><br>
         </div>
         """, unsafe_allow_html=True)
 
     with col2:
         st.markdown("""
         <div class="team-member">
-            <span class="team-member-role">President:</span><br>
-            <span class="team-member-name">Gaurab Baral</span><br>
-            <span class="team-member-email">baralg1@nku.edu</span>
+            <span class="team-member-role">Abhishek Shrestha</span><br>
         </div>
         """, unsafe_allow_html=True)
         st.markdown("""
         <div class="team-member">
-            <span class="team-member-role">E-board Member:</span><br>
-            <span class="team-member-name">Sushant Man Shrestha</span><br>
-            <span class="team-member-email">shresthas11@nku.edu</span>
+            <span class="team-member-role">Nabin Lama</span><br>
         </div>
         """, unsafe_allow_html=True)
 
