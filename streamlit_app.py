@@ -46,18 +46,11 @@ elif model == "Model 2: Eye Extraction":
     uploaded_file = st.file_uploader("Upload an image:", type=["png", "jpg", "jpeg"])
     
     if uploaded_file is not None:
-        image_bytes = uploaded_file.read()
-        nparr = np.frombuffer(image_bytes, np.uint8)
-        image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-
+        image = Image.open(uploaded_file)
         if st.button("Extract Eyes"):
             eye_images = return_eye(image) 
             if eye_images:
-                st.write(f"👁️ {len(eye_images)} eyes extracted!")
-                for i, eye in enumerate(eye_images):
-                    st.image(eye, caption=f'Extracted Eye {i+1}', use_column_width=True)
-            else:
-                st.write("No eyes detected.")
+                st.image(eye_images, caption='Extracted Eye', use_column_width=True)
     else:
         st.warning("Please upload an image to extract eyes.")
 
