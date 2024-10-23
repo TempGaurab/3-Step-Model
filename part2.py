@@ -1,7 +1,8 @@
 import numpy as np
 import cv2
 
-def return_eye(img):
+def return_eye(imag):
+    img = cv2.imread(imag)
     face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
     eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
     gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
