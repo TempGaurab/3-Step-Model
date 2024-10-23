@@ -16,7 +16,6 @@ def return_eye(img):
         eyes = eye_cascade.detectMultiScale(roi_gray)
         for (ex, ey, ew, eh) in eyes:
             eye_img = roi_color[ey:ey+eh, ex:ex+ew]  # Extract the eye region
-            eye_img_rgb = cv2.cvtColor(eye_img, cv2.COLOR_BGR2RGB)
-            return eye_img_rgb
+            return eye_img
 
 
