@@ -13,7 +13,7 @@ st.write(
 
 # Sidebar navigation
 st.sidebar.title("Navigation")
-model = st.sidebar.radio("Select a model:", ("Model 1: Person Detection", "Model 2: Details", "Model 3: Image Classification"))
+model = st.sidebar.radio("Select a model:", ("Model 1: Person Detection", "Model 2: Eye Extraction", "Model 3: Image Classification"))
 
 # Display content based on the selected model
 if model == "Model 1: Person Detection":
