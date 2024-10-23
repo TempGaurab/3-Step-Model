@@ -18,6 +18,7 @@ model = st.sidebar.radio("Select a model:", ("Model 1: Person Detection", "Model
 # Display content based on the selected model
 if model == "Model 1: Person Detection":
     st.header("Model 1: Person Detection")
+    st.subheader("Detect whether an image has a driver or not!")
     
     uploaded_file = st.file_uploader("Upload an image:", type=["png", "jpg", "jpeg"])
     
@@ -33,12 +34,12 @@ if model == "Model 1: Person Detection":
             st.write(f"👤 Person detected: {person_detected}")  # Display result
     
 elif model == "Model 2: Details":
-    st.header("Model 2")
-    st.write("Details and functionality for Model 2 will go here.")
+    st.header("Model 2: Eye Extraction")
+    st.subheader("Extract the eye from the image of the driver.")
     
 elif model == "Model 3: Image Classification":
-    st.header("Model 3: Image Classification")
-    
+    st.header("Model 3: Sleepiness Detection!")
+    st.subheader("Check for drowsiness in the eye of the driver.")
     uploaded_file = st.file_uploader("Upload an image:", type=["png", "jpg", "jpeg"])
     
     if uploaded_file is not None:
