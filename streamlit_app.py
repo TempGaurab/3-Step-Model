@@ -6,6 +6,11 @@ from part1 import main  # Function for person detection
 from part3 import main3  # Function for image classification
 from part2 import return_eye
 
+
+
+
+
+
 # Title of the app
 st.title("🎈 CSC-425-3-STEP-MODEL-DETECTION 🎈")
 st.write(
@@ -48,9 +53,17 @@ elif model == "Model 2: Eye Extraction":
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
         if st.button("Extract Eyes"):
-            eye_images = return_eye(image) 
-            if eye_images:
-                st.image(eye_images, caption='Extracted Eye', use_column_width=True)
+            with st.spinner("Extracting eyes..."):
+                try:
+                    eye_images = return_eye(image)
+                    if eye_images:
+                        st.success(f"Found {len(eye_images)} eyes!")
+                        for i, eye_img in enumerate(eye_images):
+                            st.image(eye_img, caption=f'Extracted Eye {i+1}', use_column_width=True)
+                    else:
+                        st.warning("No eyes detected in the image.")
+                except Exception as e:
+                    st.error(f"Error during eye extraction: {str(e)}")
     else:
         st.warning("Please upload an image to extract eyes.")
 
