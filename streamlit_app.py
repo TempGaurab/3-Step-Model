@@ -8,7 +8,9 @@ from part3 import main3  # Function for image classification
 # Title of the app
 st.title("🎈 CSC-425-3-STEP-MODEL-DETECTION 🎈")
 st.write(
-    "This app here is to test the machine learning model with proper GUI!"
+    '''
+The proposed system uses a three-model approach for driver drowsiness detection, where the first model activates only when the car is running and checks for a person in the driver's seat. When a person is detected, the second model locates the driver's eyes and sends these images to a custom-built third model. The third model analyzes eye features to detect drowsiness, potentially triggering various alert mechanisms like intermittent braking or honking if the driver appears to be sleeping. 
+    '''
 )
 
 # Sidebar navigation
