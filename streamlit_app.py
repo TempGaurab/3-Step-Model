@@ -33,7 +33,7 @@ if model == "Model 1: Person Detection":
             person_detected, score = main(image)  # Pass the image to the main function
             st.write(f"👤 Person detected: {person_detected}")  # Display result
     
-elif model == "Model 2: Details":
+elif model == "Model 2: Eye Extraction":
     st.header("Model 2: Eye Extraction")
     st.subheader("Extract the eye from the image of the driver.")
     
