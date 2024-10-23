@@ -8,6 +8,7 @@ from part2 import return_eye
 from io import BytesIO
 import os
 import base64
+import zipfile
 
 def get_image_download_bytes(pil_image, format='PNG'):
     """Convert PIL Image to bytes for downloading"""
