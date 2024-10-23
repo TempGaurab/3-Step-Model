@@ -15,6 +15,11 @@ def get_image_download_bytes(pil_image, format='PNG'):
     pil_image.save(buf, format=format)
     return buf.getvalue()
 
+def cv2_to_pil(cv2_image):
+    """Convert CV2 image to PIL format"""
+    cv2_image_rgb = cv2.cvtColor(cv2_image, cv2.COLOR_BGR2RGB)
+    pil_image = Image.fromarray(cv2_image_rgb)
+    return pil_image
 
 # Title of the app
 st.title("🎈 CSC-425-3-STEP-MODEL-DETECTION 🎈")
@@ -41,14 +46,26 @@ if model == "Model 1: Person Detection":
         nparr = np.frombuffer(image_bytes, np.uint8)
         image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
         
+        # Display uploaded image
+        pil_image = cv2_to_pil(image)
+        st.image(pil_image, caption='Uploaded Image', use_column_width=True)
+        
         # Button for detection
         if st.button("Detect Person"):
             person_detected, score = main(image)  # Pass the image to the main function
             st.write(f"👤 Person detected: {person_detected}")  # Display result
+            
+            # Add download button for the processed image
+            img_bytes = get_image_download_bytes(pil_image)
+            st.download_button(
+                label="Download Image",
+                data=img_bytes,
+                file_name="person_detection.png",
+                mime="image/png"
+            )
     else:
         st.warning("Please upload an image to detect a person.")
 
-#######################################################################################################    
 elif model == "Model 2: Eye Extraction":
     st.header("Model 2: Eye Extraction")
     st.subheader("Extract the eye from the image of the driver.")
@@ -85,7 +102,6 @@ elif model == "Model 2: Eye Extraction":
                             file_name="extracted_eyes.zip",
                             mime="application/zip"
                         )
-                        
                     else:
                         st.warning("No eyes detected in the image.")
                 except Exception as e:
@@ -93,7 +109,6 @@ elif model == "Model 2: Eye Extraction":
     else:
         st.warning("Please upload an image to extract eyes.")
 
-#######################################################################################################    
 elif model == "Model 3: Image Classification":
     st.header("Model 3: Sleepiness Detection!")
     st.subheader("Check for drowsiness in the eye of the driver.")
@@ -102,11 +117,23 @@ elif model == "Model 3: Image Classification":
     
     if uploaded_file is not None:
         # Load the uploaded image
-        image = Image.open(uploaded_file)  # Use PIL to open the image
+        image = Image.open(uploaded_file)
+        
+        # Display uploaded image
+        st.image(image, caption='Uploaded Image', use_column_width=True)
 
         # Button for classification
         if st.button("Classify Image"):
             result = main3(image)  # Pass the image to the main3 function
             st.write(f"🖼️ Prediction: {result}")  # Display the prediction result
+            
+            # Add download button for the processed image
+            img_bytes = get_image_download_bytes(image)
+            st.download_button(
+                label="Download Image",
+                data=img_bytes,
+                file_name="drowsiness_detection.png",
+                mime="image/png"
+            )
     else:
         st.warning("Please upload an image for drowsiness detection.")
