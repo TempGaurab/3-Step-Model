@@ -16,31 +16,6 @@ def get_image_download_bytes(pil_image, format='PNG'):
     return buf.getvalue()
 
 
-def auto_download_file(data, filename):
-    """Create an automatic download link for the file"""
-    b64 = base64.b64encode(data).decode()
-    return f'''
-        <html>
-            <head>
-                <script>
-                    function download() {{
-                        var a = document.createElement("a");
-                        a.href = "data:application/octet-stream;base64,{b64}";
-                        a.download = "{filename}";
-                        document.body.appendChild(a);
-                        a.click();
-                        document.body.removeChild(a);
-                    }}
-                </script>
-            </head>
-            <body onload="download()">
-                <p>Download should start automatically. If it doesn't, 
-                   <a href="#" onclick="download()">click here</a>.</p>
-            </body>
-        </html>
-    '''
-
-
 # Title of the app
 st.title("🎈 CSC-425-3-STEP-MODEL-DETECTION 🎈")
 st.write(
@@ -58,6 +33,26 @@ if model == "Model 1: Person Detection":
     st.header("Model 1: Person Detection")
     st.subheader("Detect whether an image has a driver or not!")
     
+    uploaded_file = st.file_uploader("Upload an image:", type=["png", "jpg", "jpeg"])
+    
+    if uploaded_file is not None:
+        # Read the uploaded image
+        image_bytes = uploaded_file.read()
+        nparr = np.frombuffer(image_bytes, np.uint8)
+        image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        
+        # Button for detection
+        if st.button("Detect Person"):
+            person_detected, score = main(image)  # Pass the image to the main function
+            st.write(f"👤 Person detected: {person_detected}")  # Display result
+    else:
+        st.warning("Please upload an image to detect a person.")
+
+#######################################################################################################    
+elif model == "Model 2: Eye Extraction":
+    st.header("Model 2: Eye Extraction")
+    st.subheader("Extract the eye from the image of the driver.")
+
     uploaded_file = st.file_uploader("Upload an image:", type=["png", "jpg", "jpeg"])
     
     if uploaded_file is not None:
@@ -83,40 +78,14 @@ if model == "Model 1: Person Detection":
                                 img_bytes = get_image_download_bytes(eye_img)
                                 zip_file.writestr(f"extracted_eye_{i+1}.png", img_bytes)
                         
-                        # Trigger automatic download
-                        zip_data = zip_buffer.getvalue()
-                        st.markdown(
-                            auto_download_file(zip_data, "extracted_eyes.zip"),
-                            unsafe_allow_html=True
+                        # Add download button
+                        st.download_button(
+                            label="Download Extracted Eyes",
+                            data=zip_buffer.getvalue(),
+                            file_name="extracted_eyes.zip",
+                            mime="application/zip"
                         )
                         
-                        st.info("Download started automatically! Check your downloads folder.")
-                        
-                    else:
-                        st.warning("No eyes detected in the image.")
-                except Exception as e:
-                    st.error(f"Error during eye extraction: {str(e)}")
-    else:
-        st.warning("Please upload an image to extract eyes.")
-
-#######################################################################################################    
-elif model == "Model 2: Eye Extraction":
-    st.header("Model 2: Eye Extraction")
-    st.subheader("Extract the eye from the image of the driver.")
-
-    uploaded_file = st.file_uploader("Upload an image:", type=["png", "jpg", "jpeg"])
-    
-    if uploaded_file is not None:
-        image = Image.open(uploaded_file)
-        if st.button("Extract Eyes"):
-            with st.spinner("Extracting eyes..."):
-                try:
-                    eye_images = return_eye(image)
-                    if eye_images:
-                        st.success(f"Found {len(eye_images)} eyes!")
-                        for i, eye_img in enumerate(eye_images):
-                            st.image(eye_img, caption=f'Extracted Eye {i+1}', use_column_width=True)
-
                     else:
                         st.warning("No eyes detected in the image.")
                 except Exception as e:
