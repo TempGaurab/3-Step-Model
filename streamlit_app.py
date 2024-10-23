@@ -169,7 +169,7 @@ elif model == "Models Together":
                 try:
                     eye_images = return_eye(pil_image)
                     if eye_images:
-                        st.success(f"Found {len(eye_images)} eyes!")
+                        st.success(f"Found eyes!")
                         
                         # Display and analyze each eye
                         for i, eye_img in enumerate(eye_images):
