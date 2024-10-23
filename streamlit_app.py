@@ -31,7 +31,11 @@ The proposed system uses a three-model approach for driver drowsiness detection,
 
 # Sidebar navigation
 st.sidebar.title("Navigation")
-model = st.sidebar.radio("Select a model:", ("Model 1: Person Detection", "Model 2: Eye Extraction", "Model 3: Image Classification"))
+model = st.sidebar.radio("Select a model:", 
+    ("Model 1: Person Detection", 
+     "Model 2: Eye Extraction", 
+     "Model 3: Image Classification",
+     "Models Together"))
 
 # Display content based on the selected model
 if model == "Model 1: Person Detection":
@@ -137,3 +141,7 @@ elif model == "Model 3: Image Classification":
             )
     else:
         st.warning("Please upload an image for drowsiness detection.")
+
+elif model == "Models Together":
+    st.header("Complete Drowsiness Detection Pipeline")
+    st.subheader("Run all three models in sequence")
