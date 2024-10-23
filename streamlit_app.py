@@ -4,6 +4,7 @@ import numpy as np
 from PIL import Image
 from part1 import main  # Function for person detection
 from part3 import main3  # Function for image classification
+from part2 import return_eye
 
 # Title of the app
 st.title("🎈 CSC-425-3-STEP-MODEL-DETECTION 🎈")
@@ -34,14 +35,37 @@ if model == "Model 1: Person Detection":
         if st.button("Detect Person"):
             person_detected, score = main(image)  # Pass the image to the main function
             st.write(f"👤 Person detected: {person_detected}")  # Display result
-    
+    else:
+        st.warning("Please upload an image to detect a person.")
+
+#######################################################################################################    
 elif model == "Model 2: Eye Extraction":
     st.header("Model 2: Eye Extraction")
     st.subheader("Extract the eye from the image of the driver.")
+
+    uploaded_file = st.file_uploader("Upload an image:", type=["png", "jpg", "jpeg"])
     
+    if uploaded_file is not None:
+        image_bytes = uploaded_file.read()
+        nparr = np.frombuffer(image_bytes, np.uint8)
+        image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+
+        if st.button("Extract Eyes"):
+            eye_images = return_eye(image) 
+            if eye_images:
+                st.write(f"👁️ {len(eye_images)} eyes extracted!")
+                for i, eye in enumerate(eye_images):
+                    st.image(eye, caption=f'Extracted Eye {i+1}', use_column_width=True)
+            else:
+                st.write("No eyes detected.")
+    else:
+        st.warning("Please upload an image to extract eyes.")
+
+#######################################################################################################    
 elif model == "Model 3: Image Classification":
     st.header("Model 3: Sleepiness Detection!")
     st.subheader("Check for drowsiness in the eye of the driver.")
+    
     uploaded_file = st.file_uploader("Upload an image:", type=["png", "jpg", "jpeg"])
     
     if uploaded_file is not None:
@@ -52,3 +76,5 @@ elif model == "Model 3: Image Classification":
         if st.button("Classify Image"):
             result = main3(image)  # Pass the image to the main3 function
             st.write(f"🖼️ Prediction: {result}")  # Display the prediction result
+    else:
+        st.warning("Please upload an image for drowsiness detection.")
