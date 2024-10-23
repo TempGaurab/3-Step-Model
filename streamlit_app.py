@@ -5,10 +5,13 @@ from PIL import Image
 from part1 import main  # Function for person detection
 from part3 import main3  # Function for image classification
 from part2 import return_eye
+from io import BytesIO
 
-
-
-
+def get_image_download_bytes(pil_image, format='PNG'):
+    """Convert PIL Image to bytes for downloading"""
+    buf = BytesIO()
+    pil_image.save(buf, format=format)
+    return buf.getvalue()
 
 
 # Title of the app
@@ -58,8 +61,41 @@ elif model == "Model 2: Eye Extraction":
                     eye_images = return_eye(image)
                     if eye_images:
                         st.success(f"Found {len(eye_images)} eyes!")
+                        
+                        # Create columns for displaying eyes with their download buttons
                         for i, eye_img in enumerate(eye_images):
-                            st.image(eye_img, caption=f'Extracted Eye {i+1}', use_column_width=True)
+                            col1, col2 = st.columns([3, 1])
+                            
+                            # Display eye image
+                            with col1:
+                                st.image(eye_img, caption=f'Extracted Eye {i+1}', use_column_width=True)
+                            
+                            # Add download button
+                            with col2:
+                                # Convert image to bytes
+                                img_bytes = get_image_download_bytes(eye_img)
+                                st.download_button(
+                                    label=f"Download Eye {i+1}",
+                                    data=img_bytes,
+                                    file_name=f"extracted_eye_{i+1}.png",
+                                    mime="image/png"
+                                )
+                        
+                        # Add button to download all eyes in a zip file
+                        if len(eye_images) > 1:
+                            import zipfile
+                            zip_buffer = BytesIO()
+                            with zipfile.ZipFile(zip_buffer, 'w') as zip_file:
+                                for i, eye_img in enumerate(eye_images):
+                                    img_bytes = get_image_download_bytes(eye_img)
+                                    zip_file.writestr(f"extracted_eye_{i+1}.png", img_bytes)
+                            
+                            st.download_button(
+                                label="Download All Eyes (ZIP)",
+                                data=zip_buffer.getvalue(),
+                                file_name="extracted_eyes.zip",
+                                mime="application/zip"
+                            )
                     else:
                         st.warning("No eyes detected in the image.")
                 except Exception as e:
