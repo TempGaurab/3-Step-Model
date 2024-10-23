@@ -212,7 +212,7 @@ elif model == "Models Together":
 
 
 elif model == "Team Members":
-    passst.subheader("Our Team")
+    st.subheader("Our Team")
     
     col1, col2, col3 = st.columns(3)
 
