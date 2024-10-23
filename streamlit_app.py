@@ -22,6 +22,105 @@ def cv2_to_pil(cv2_image):
     pil_image = Image.fromarray(cv2_image_rgb)
     return pil_image
 
+def about_the_club():
+    st.markdown("""
+    <style>
+    .big-font {
+        font-size:30px !important;
+        font-weight: bold;
+        color: --text-color;
+        margin-bottom: 20px;
+    }
+    .club-description {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        padding: 20px;
+        border-radius: 10px;
+        border-left: 5px solid #003366;
+    }
+    .team-member {
+        margin-bottom: 15px;
+        color: --text-color;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    .team-member-role {
+        font-weight: bold;
+        color: --text-color;
+    }
+    .team-member-name {
+        font-style: italic;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown('<p class="big-font">About the Data Science Club</p>', unsafe_allow_html=True)
+    
+    st.markdown("""
+    <div class="club-description">
+    The Data Science Club is created for all those interested in topics related to Data Science and Data Analytics, 
+    not just those interested in pursuing a career in the field. We discuss new technologies, internship/career experiences, 
+    and other special topics. All skill levels and majors are welcome.
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.subheader("Our Team")
+    
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.markdown("""
+        <div class="team-member">
+            <span class="team-member-role">Advisor:</span><br>
+            <span class="team-member-name">Dr. YangYang Tao</span><br>
+            <span class="team-member-email">taoy1@nku.edu</span>
+        </div>
+        """, unsafe_allow_html=True)
+        st.markdown("""
+        <div class="team-member">
+            <span class="team-member-role">E-board Member:</span><br>
+            <span class="team-member-name">Mithilesh Sah</span><br>
+            <span class="team-member-email">sahm1@nku.edu</span>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col2:
+        st.markdown("""
+        <div class="team-member">
+            <span class="team-member-role">President:</span><br>
+            <span class="team-member-name">Gaurab Baral</span><br>
+            <span class="team-member-email">baralg1@nku.edu</span>
+        </div>
+        """, unsafe_allow_html=True)
+        st.markdown("""
+        <div class="team-member">
+            <span class="team-member-role">E-board Member:</span><br>
+            <span class="team-member-name">Sushant Man Shrestha</span><br>
+            <span class="team-member-email">shresthas11@nku.edu</span>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col3:
+        st.markdown("""
+        <div class="team-member">
+            <span class="team-member-role">Vice President:</span><br>
+            <span class="team-member-name">Aaditya Khanal</span><br>
+            <span class="team-member-email">khanala1@nku.edu</span>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col3:
+        st.markdown("""
+        <div class="team-member">
+            <span class="team-member-role">E-board Member:</span><br>
+            <span class="team-member-name">Aalok Dhonju</span><br>
+            <span class="team-member-email">dhonjua1@nku.edu</span>
+        </div>
+        """, unsafe_allow_html=True)
+
+
+
 # Title of the app
 st.title("🎈 CSC-425-3-STEP-MODEL-DETECTION 🎈")
 st.write(
@@ -212,35 +311,4 @@ elif model == "Models Together":
 
 
 elif model == "Team Members":
-    st.subheader("Our Team")
-    
-    col1, col2, col3 = st.columns(3)
-
-    with col1:
-        st.markdown("""
-        <div class="team-member">
-            <span class="team-member-role">Member 1:</span><br>
-            <span class="team-member-name">Gaurab Baral</span><br>
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("""
-        <div class="team-member">
-            <span class="team-member-role">Member 1:</span><br>
-            <span class="team-member-name">Nabin Lama</span><br>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with col2:
-        st.markdown("""
-        <div class="team-member">
-            <span class="team-member-role">Member 1</span><br>
-            <span class="team-member-name">Abhishek Shrestha</span><br>
-
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("""
-        <div class="team-member">
-            <span class="team-member-role">Member 1:</span><br>
-            <span class="team-member-name">Sushant Man Shrestha</span><br>
-        </div>
-        """, unsafe_allow_html=True)
+    about_the_club()
