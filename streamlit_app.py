@@ -6,9 +6,9 @@ from part1 import main  # Function for person detection
 from part3 import main3  # Function for image classification
 
 # Title of the app
-st.title("🎈 My New App")
+st.title("🎈 CSC-425-3-STEP-MODEL-DETECTION 🎈")
 st.write(
-    "Welcome to my app! Let's start building. For help and inspiration, check out the [Streamlit documentation](https://docs.streamlit.io/)."
+    "This app here is to test the machine learning model with proper GUI!"
 )
 
 # Sidebar navigation
