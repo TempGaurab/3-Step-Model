@@ -55,19 +55,19 @@ def about_the_club():
     </style>
     """, unsafe_allow_html=True)
 
-    st.markdown('<p class="big-font">About the Data Science Club</p>', unsafe_allow_html=True)
+    st.markdown('<p class="big-font">About the Project</p>', unsafe_allow_html=True)
     
     st.markdown("""
     <div class="club-description">
-    The Data Science Club is created for all those interested in topics related to Data Science and Data Analytics, 
-    not just those interested in pursuing a career in the field. We discuss new technologies, internship/career experiences, 
-    and other special topics. All skill levels and majors are welcome.
+    This project is going to use 3-part models. Let’s imagine a car. Whenever the car is turned on and a person is seen in the driver’s seat, the model will detect a person, and it will start the second model only if it detects a person. If the car is turned off, this model will be off as well.
+After the first model detects a person, the second model will detect the eye of the person and send the image of the eye of the person to the third model which we built by ourselves. The third model will check for drowsiness based on eye features. If the person is found sleeping, different car mechanisms can be used to wake up the driver like braking in short intervals, honking etc. We will only be implementing the model part and not the IOT side of things.
+
     </div>
     """, unsafe_allow_html=True)
     
     st.subheader("Our Team")
     
-    col1, col2, col3 = st.columns(3)
+    col1, col2 = st.columns(2)
 
     with col1:
         st.markdown("""
@@ -98,24 +98,6 @@ def about_the_club():
             <span class="team-member-role">E-board Member:</span><br>
             <span class="team-member-name">Sushant Man Shrestha</span><br>
             <span class="team-member-email">shresthas11@nku.edu</span>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with col3:
-        st.markdown("""
-        <div class="team-member">
-            <span class="team-member-role">Vice President:</span><br>
-            <span class="team-member-name">Aaditya Khanal</span><br>
-            <span class="team-member-email">khanala1@nku.edu</span>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with col3:
-        st.markdown("""
-        <div class="team-member">
-            <span class="team-member-role">E-board Member:</span><br>
-            <span class="team-member-name">Aalok Dhonju</span><br>
-            <span class="team-member-email">dhonjua1@nku.edu</span>
         </div>
         """, unsafe_allow_html=True)
 
