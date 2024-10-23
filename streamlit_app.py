@@ -36,7 +36,8 @@ model = st.sidebar.radio("Select a model:",
     ("Model 1: Person Detection", 
      "Model 2: Eye Extraction", 
      "Model 3: Image Classification",
-     "Models Together"))
+     "Models Together",
+     "Team Members"))
 
 # Display content based on the selected model
 if model == "Model 1: Person Detection":
@@ -208,3 +209,41 @@ elif model == "Models Together":
                 st.warning("No person detected in the image. Stopping analysis.")
     else:
         st.warning("Please upload an image to begin the complete analysis.")
+
+
+elif model == "Team Members":
+    passst.subheader("Our Team")
+    
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.markdown("""
+        <div class="team-member">
+            <span class="team-member-role">Advisor:</span><br>
+            <span class="team-member-name">Dr. YangYang Tao</span><br>
+            <span class="team-member-email">taoy1@nku.edu</span>
+        </div>
+        """, unsafe_allow_html=True)
+        st.markdown("""
+        <div class="team-member">
+            <span class="team-member-role">E-board Member:</span><br>
+            <span class="team-member-name">Mithilesh Sah</span><br>
+            <span class="team-member-email">sahm1@nku.edu</span>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col2:
+        st.markdown("""
+        <div class="team-member">
+            <span class="team-member-role">President:</span><br>
+            <span class="team-member-name">Gaurab Baral</span><br>
+            <span class="team-member-email">baralg1@nku.edu</span>
+        </div>
+        """, unsafe_allow_html=True)
+        st.markdown("""
+        <div class="team-member">
+            <span class="team-member-role">E-board Member:</span><br>
+            <span class="team-member-name">Sushant Man Shrestha</span><br>
+            <span class="team-member-email">shresthas11@nku.edu</span>
+        </div>
+        """, unsafe_allow_html=True)
