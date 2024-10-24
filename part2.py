@@ -25,6 +25,7 @@ def cv2_to_pil(cv2_image):
 
 
 def return_eye(pil_image):
+    max_eyes = 2
     """Extract eyes from an image"""
     # Convert PIL image to CV2 format
     img = pil_to_cv2(pil_image)
