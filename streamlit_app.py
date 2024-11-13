@@ -4,7 +4,7 @@ import numpy as np
 from PIL import Image
 from part1 import main  # Function for person detection
 from part3 import main3  # Function for image classification
-from part2 import return_eye
+from part2 import get_output
 from io import BytesIO
 import os
 import base64
@@ -150,7 +150,7 @@ elif model == "Model 2: Eye Extraction":
         if st.button("Extract Eyes"):
             with st.spinner("Extracting eyes..."):
                 try:
-                    eye_images = return_eye(image)
+                    eye_images = get_output(image)
                     if eye_images:
                         st.success(f"Found {len(eye_images)} eyes!")
                         
@@ -234,7 +234,7 @@ elif model == "Models Together":
                 # Step 2: Eye Extraction
                 st.write("Step 2: Eye Extraction")
                 try:
-                    eye_images = return_eye(pil_image)
+                    eye_images = get_output(pil_image)
                     if eye_images:
                         st.success(f"Found eyes!")
                         
