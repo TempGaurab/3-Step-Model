@@ -25,3 +25,4 @@ def main(image_path):
     model = YOLO('yolo8-trained.pt')  # Load your trained model
     person_detected = is_person_detected(model, image_path)
     return person_detected
+
